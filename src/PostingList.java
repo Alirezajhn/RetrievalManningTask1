@@ -21,19 +21,27 @@ public class PostingList {
     }
 
     public void add(int id) {
+
         docIds.add(id);
     }
 
+    public void remove(int id) {
+        docIds.remove(id);
+    }
+
     public void sort() {
+
         Collections.sort(docIds);
     }
 
     public int size() {
+
         return docIds.size();
     }
 
     @Override
     public String toString() {
+
         return Arrays.toString(docIds.toArray(new Integer[0]));
     }
 
@@ -97,30 +105,35 @@ public class PostingList {
 
     public PostingList not(PostingList other) {
         PostingList result = new PostingList();
-        int i = 0, j = 0;
+        int i = 0,j=0;
         while (i < size() && j < other.size()) {
-
+            int b = other.docIds.get(j);
+            boolean flag = docIds.contains(b);
+            if (!flag) {
+                result.add(b);
+            }
+            j++;
+            i++;
         }
         return result;
     }
+
     //test
 //
 //    public static void main(String[] args) {
 //        //مرتب شده باید باشد
-//        PostingList l1 = new PostingList(1, 3, 5, 8, 9);
-//        PostingList l2 = new PostingList(0, 3, 8, 15, 20);
-//        System.out.println(l1);
-//        System.out.println(l2);
-//        System.out.println(l1.or(l2));
+//        PostingList l1 = new PostingList(2, 3, 4, 5);
+//        System.out.println(l1.not());
 //
 //    }
 //    public static void main(String[] args) {
 //        //مرتب شده باید باشد
-//        PostingList l2 = new PostingList(1, 3, 5, 8, 9);
-//        PostingList l1 = new PostingList(0, 3, 8, 15, 20);
+//        PostingList l2 = new PostingList(3,4,5);
+//        PostingList l2 = new PostingList(1,2,3,4,5);
+//
 //        System.out.println(l1);
 //        System.out.println(l2);
-//        System.out.println(l1.or(l2));
+//        System.out.println(l1.not());
 //    }
 
 
